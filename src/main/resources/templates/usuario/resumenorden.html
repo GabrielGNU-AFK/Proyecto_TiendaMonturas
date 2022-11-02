@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="https://www.thymeleaf.org">
+
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Importaciones Justy</title>
+
+
+<!-- Bootstrap core CSS -->
+<link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}"
+	rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link th:href="@{/css/heroic-features.css}" rel="stylesheet">
+
+<link href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" rel="stylesheet" >
+<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+
+
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<div th:include="usuario/template_usuario.html::header" th:if="${sesion==null}">
+	</div>
+	
+	<div th:include="usuario/template_usuario.html::header-user" th:unless="${sesion==null}">
+	</div>
+
+
+	<!-- Page Content -->
+	<div class="container">
+
+
+		<!-- Page Heading/Breadcrumbs -->
+		<h1 class="mt-4 mb-3">
+			Importaciones Justy <small>Resumen de la orden</small>
+		</h1>
+
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+			<li class="breadcrumb-item active">Orden</li>
+		</ol>
+
+		<!-- Blog Post -->
+		<div class="card mb-4">
+			<div class="card-body">
+				<div class="row">
+					<div class="col-lg-9">
+						<div class="card-body">
+							<h5 class="card-title">DATOS ORDEN</h5>
+							<h6 th:text=" 'Nombre: '+ ${usuario.nombre}"></h6>
+							<h6 th:text="'Correo: '+  ${usuario.email}"></h6>
+							<h6 th:text="'Dirección: '+ ${usuario.direccion}"></h6>
+							
+							<h5 class="card-title">PRODUCTOS</h5>
+							<div class="alert alert-light" role="alert">
+								<table class="table">
+									<thead>
+										<tr>
+									<th scope="col">Producto</th>
+									<th scope="col">Precio U.</th>
+									<th scope="col">Cantidad</th>
+									<th scope="col">SubTotal</th>
+									<th scope="col">Igv</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="dtorden:${cart}">
+										<td th:text="${dtorden.nombre}"></td>
+									<td th:text="${dtorden.precio}"></td>
+									<td th:text="${dtorden.cantidad}"></td>
+									<td th:text="${dtorden.precio*dtorden.cantidad}"></td>
+							
+									<td th:text="${#numbers.formatDecimal(dtorden.precio*dtorden.cantidad*0.18, 1, 'DEFAULT', 2, 'DEFAULT')}"></td>
+										
+
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+						</div>
+					</div>
+
+
+					<div class="col-lg-3">
+						<h2 class="card-title">Resumen Orden</h2>
+					
+					
+					
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        
+        
+        <div class="container py-5">
+    <!-- For demo purpose -->
+    <div class="row mb-4">
+        <div class="col-lg-8 mx-auto text-center">
+            <h1 class="display-6">Forma de Pago</h1>
+        </div>
+    </div> <!-- End -->
+    <div class="">
+        <div class="">
+            <div >
+                <div class="card-header">
+                    <div class="bg-white shadow-sm pt-4 pl-2 pr-2 pb-2">
+                        <!-- Credit card form tabs -->
+                        <ul role="tablist" class="nav bg-light nav-pills rounded nav-fill mb-3">
+                            <li class="nav-item"> <a data-toggle="pill" href="#credit-card" class="nav-link active "> <i class="fas fa-credit-card mr-2"></i> Tarjeta de Credito </a> </li>
+                            
+                          
+                        </ul>
+                    </div> <!-- End -->
+                    <!-- Credit card form content -->
+                    <div class="tab-content">
+                        <!-- credit card info-->
+                        <div id="credit-card" class="tab-pane fade show active pt-3">
+                            <form role="form" id="formularioempleado" th:href="@{saveOrder}">
+                                <div class="form-group"> <label for="username">
+                                        <h6>Nombre del Titular</h6>
+                                    </label> <input type="text"  id="nombretitular" name="username" placeholder="" required class="form-control " minlength="1" maxlength="50"  pattern="[a-zA-ZÀ-ÿ]+"> </div>
+                                    	
+                                <div class="form-group"> <label for="cardNumber">
+                                        <h6>Numero de la Tarjeta</h6>
+                                    </label>
+                                    <div class="input-group"> <input type="text" id="ntarjeta" name="cardNumber" placeholder="Valid card number" class="form-control " minlength="16" maxlength="16" required pattern="[0-9]+">
+                                        <div class="input-group-append"> <span class="input-group-text text-muted"> <i class="fab fa-cc-visa mx-1"></i> <i class="fab fa-cc-mastercard mx-1"></i> <i class="fab fa-cc-amex mx-1"></i> </span> </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="form-group"> <label><span class="hidden-xs">
+                                                    <h6>Fecha de Caducidad</h6>
+                                                </span></label>
+                                            <div class="input-group"> <input type="text" id="mes" placeholder="MM" name="" class="form-control" minlength="2" maxlength="2" pattern="[0-9]+"  required> 
+                                            <input type="number" id="anio" placeholder="AA" name="" class="form-control"  minlength="2" maxlength="2" pattern="[2-9]+"> </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group mb-4"> <label data-toggle="tooltip" title="Código CV de tres dígitos en el reverso de su tarjeta"  >
+                                                <h6>CVV <i class="fa fa-question-circle d-inline"></i></h6>
+                                            </label> <input type="text" id="cvv" required class="form-control" minlength="3" maxlength="3" pattern="[0-9]+"> </div>
+                                    </div>
+                                </div>
+                                
+                                <ul class="list-group">
+							<li class="list-group-item"><h5
+									th:text=" 'Total: '+ ${orden.total} "></h5></li>
+									
+									<a  th:href="@{saveOrder}" class="btn btn-dark not-active" >
+									 Confimar Pago
+									</a>
+						
+							 
+						</ul>
+
+                               
+                                
+                            </form>
+                        </div>
+                    </div> <!-- End -->
+
+                  </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      
+      </div>
+    </div>
+  </div>
+</div>		
+					
+					
+
+
+
+						<ul class="list-group">
+							<li class="list-group-item"><h5
+									th:text=" 'Total : '+ ${orden.total} "></h5></li>
+							 
+
+                          			<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#staticBackdrop">
+Pagar
+</button>
+<a  th:href="@{cancelOrder}">Cancelar Orden </a>
+							 
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+	<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	<script th:src="@{/scripts/validation.js}"></script>
+<script th:src="@{/scripts/validation2.js}"></script>
+
+</body>
+
+<div th:include="usuario/template_usuario.html::footer"></div>
+
+</html>

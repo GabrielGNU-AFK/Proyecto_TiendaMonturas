@@ -1,0 +1,50 @@
+/*!
+ * Start Bootstrap - Heroic Features (https://startbootstrap.com/templates/heroic-features)
+ * Copyright 2013-2020 Start Bootstrap
+ * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-heroic-features/blob/master/LICENSE)
+ */
+body {
+	padding-top: 56px;
+	margin: 0;
+	
+	display: grid;
+	min-height: 100vh;
+	grid-template-rows: auto 1fr auto;
+}
+
+.footer_ {
+	margin-top: auto;
+}
+
+.rounded {
+    border-radius: 1rem
+}
+
+.nav-pills .nav-link {
+    color: #555
+}
+
+.nav-pills .nav-link.active {
+    color: white
+}
+
+input[type="radio"] {
+    margin-right: 5px
+}
+
+.bold {
+    font-weight: bold
+}
+
+.body_cl{
+	padding-top: 56px;
+	margin: 0;
+	
+	display: grid;
+	min-height: 105vh;
+	grid-template-rows: auto 1fr auto;
+}
+.not-active { 
+            pointer-events: none; 
+            cursor: default; 
+        } 

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Importaciones Justy</title>
+
+
+<link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}"
+	rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link th:href="@{/css/heroic-features.css}" rel="stylesheet">
+
+<link href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" rel="stylesheet" >
+
+</head>
+
+	<div th:include="usuario/template_usuario.html::header" th:if="${sesion==null}">
+	</div>
+	
+	<div th:include="usuario/template_usuario.html::header-user" th:unless="${sesion==null}">
+	 </div>
+
+<body>
+
+
+
+    <!-- Page Content -->
+    <div class="container">
+
+
+      <!-- Page Heading/Breadcrumbs -->
+      <h1 class="mt-4 mb-3">
+        Importaciones Justy <small>Detalles</small>
+      </h1>
+
+
+
+
+
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+        <li class="breadcrumb-item"><a th:href="@{/usuario/compras}">Compras</a></li>
+        <li class="breadcrumb-item active">Detalle de Compra</li>
+      </ol>
+      
+      
+      <h5 class="card-title">DATOS ORDEN</h5>
+							<h6 th:text=" 'Nombre: '+ ${usuario.nombre}"></h6>
+							<h6 th:text="'Correo: '+  ${usuario.email}"></h6>
+							<h6 th:text="'Dirección: '+ ${usuario.direccion}"></h6>
+							<h6 th:text="'Dni: '+ ${usuario.telefono}"></h6>
+							<h6 th:text="'Monto Total: '+ ${Total}"></h6>
+      
+
+      
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="row">
+           <div class="col-lg-12">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Cantidad</th>
+                  <th scope="col">Producto</th>                  
+                  <th scope="col">Precio</th>
+                  <th scope="col">Total</th>                  
+                </tr>
+              </thead>
+              <tbody>
+                 <tr th:each="detalle:${detalles}">
+                  <td  th:text="${detalle.cantidad}"></td>
+                  <td th:text="${detalle.nombre}"></td>
+                  <td th:text="${detalle.precio}"></td>
+                  <td th:text="${detalle.total}"></td>
+                                 
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Idat 2022</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+	<!-- Bootstrap core JavaScript -->
+	<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+	<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+		<script th:src="@{/scripts/validation.js}"></script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</body>
+	<div th:include="usuario/template_usuario.html::footer"></div>
+</html>
+

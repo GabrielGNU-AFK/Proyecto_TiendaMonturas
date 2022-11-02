@@ -1,0 +1,63 @@
+
+                 
+                 
+   <!DOCTYPE html>
+<html lang="es" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Importaciones Justy</title>
+
+
+  <!-- Bootstrap core CSS -->
+  <link th:href="@{vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link th:href="@{css/heroic-features.css}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+	<div th:include="administrador/template_admin.html::header">
+	</div>
+	
+
+<!-- Page Content -->
+<div class="container">
+
+
+ <form th:action="@{/reporteventa}" method="get" >
+                <div>
+                <label>Desde</label>
+                 <input type="date" th:name="desde"   />
+                 <label>Hasta</label>
+                 <input type="date" th:name="hasta"  />
+                 </div>
+
+                 <button th:href="@{productos/edit/{id} (id=${producto.id}) }">Buscar</button>
+                 </form>
+                 
+
+</div>
+<!-- /.container -->
+
+<!-- Footer -->
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script th:src="@{vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+<div  th:include="administrador/template_admin.html::footer">
+	</div>
+
+</html>
+                 
